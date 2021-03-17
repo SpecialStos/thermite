@@ -1,0 +1,198 @@
+$light: #eee;
+$dark: #252627;
+$bar: #aa6657;
+
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+
+body {
+	
+  height: 100vh;
+  background: $dark;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  
+  flex-direction: column;
+  color: white;
+  font-family: 'DotGothic16', sans-serif;
+  
+  font-size: 5vh;
+  position: relative;
+}
+main {
+  flex: 1;
+  display: flex;
+  color: white;
+  font-family: 'DotGothic16', sans-serif;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+
+}
+header,
+footer {
+  height: 5%;
+  line-height: 5vh;
+  font-size: 3vh;
+  color: white;
+  background: $bar;
+  text-align: right;
+  text-transform: uppercase;
+  padding: 0 2.5vh;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+ 
+}
+ ul {
+  position: static;
+  margin-top: 205%;
+  margin-right: 33%;
+    display: flex;
+    flex-direction: row-reverse; 
+    list-style: none;
+  }
+
+  .mistakes {
+    height: 5%;
+    line-height: 5vh;
+    font-size: 3vh;
+	color: white;
+	font-family: 'DotGothic16', sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 0 2.5vh;
+    display: block;
+    justify-content: space-between;
+  }
+
+  .misses {
+    padding: .5vh;
+	color: white;
+    transition: all .225s ease-out;
+  }
+
+  .misses.missed {
+    opacity: .4;
+	color: red;
+    transform: rotate(-45deg);
+  }
+
+main > div {
+  position: absolute;
+  top: 6.2vh;
+  left: 0;
+  text-transform: uppercase;
+  perspective: 300px;
+  transition: opacity .9s ease-in;
+  font-size: 4.2vh;
+  opacity: 0.9;
+  > span {
+    position: absolute;
+    display: block;
+    perspective: 300px;
+    b {
+      display: block;
+      padding: 2.5vh;
+      transition: opacity .10s linear;
+    }
+  }
+}
+
+main > div.popped {
+    opacity: 0;
+    > span {
+      b {
+        opacity: 0;
+      }
+      animation-play-state: paused;
+    }
+  }
+
+
+ main > div.missed {
+    opacity: 0;
+    > span {
+      //  transform: scaleY(0);
+      animation-play-state: paused;
+    }
+  }
+
+@keyframes waver {
+  100% {
+    transform: translate3d(6vw, 0, 0);
+  }
+}
+
+#game-border {
+  opacity: 100;
+  pointer-events: none;
+  transition: opacity .75s ease-out;
+  background: rgba(0,120,90,.75);
+  
+  position: absolute;
+  top: 80%;
+  right: 0;
+  bottom: 13%;
+  left: 0;
+  width: 10%;
+  
+  display: block;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  
+  text-transform: uppercase;
+  
+  &.indeed {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+button {
+  appearance: none;
+  border-radius: 0;
+  border: .3rem solid $light;
+  color: $light;
+  font-size: 3vh;
+  padding: 1.5vh 2vh;
+  background: transparent;
+  margin-top: 5vh;
+  font-family: monospace;
+  
+  &:hover {
+    border-color: $bar;
+  }
+}
+
+.phone-container {
+  background-image: url("nui://thermite/html/img/phone.png");
+  background-repeat:no-repeat;
+  background-size:100% 100%;
+  width: 300px;
+  height: 610px;
+  border-radius: 10px;
+  margin-left:82%;
+  margin-top:20%;
+  opacity: 1;
+  overflow: hidden;
+  display: none;
+  z-index: 9999999;
+  padding-top:4%;
+  padding-left:5px;
+}
+
+@-webkit-keyframes twist {
+    from { -webkit-transform: scaleX(0.98); }
+    to { -webkit-transform: scaleX(1.0); }
+    from { -webkit-transform: scaleY(0.99); }
+    to { -webkit-transform: scaleY(1.0); }
+}
+
+.twist {
+  -webkit-animation: twist 3s ease-in-out infinite;
+  -webkit-animation-direction: alternate;
+}
